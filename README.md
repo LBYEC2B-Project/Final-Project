@@ -1,3 +1,4 @@
 # Final-Project
 
-Download the zip file when you want to edit. When your done, similar to lab activities, just drag the cpp file into github.
+You can edit here: [![Run on Repl.it](https://repl.it/badge/github/LBYEC2B-Project/Final-Project)](https://repl.it/github/LBYEC2B-Project/Final-Project)
+Para online collab.
