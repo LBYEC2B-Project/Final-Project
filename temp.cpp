@@ -13,16 +13,30 @@ using namespace std;
  
  then, read and convert data from file into Product objects, and add them to the array.
 **/
+
+class BasicInfo{
+    private:
+    char name[20], company[20];
+    public:
+    BasicInfo(){
+        cout<<"Basic User Information\n";
+        cout<<"Name of User: ";
+        cin>>name;
+        cout<<"Company Name: ";
+        cin>>company;
+    };
+};
+
 class Product{
-	string id;
-	string group;
 	string name;
+	string classification;
+	string id;
 	int price;
 	int qty;
 		
 	Product(string a , string b, string c, int d, int e){
 		id = a;
-		group = b;
+		classification = b;
 		name = c;
 		price = d;
 		qty = e;
@@ -102,9 +116,8 @@ int main(){
     
     list = readFile();
     
-    
-    
     cout<<"|||Product Inventory System v1.0|||\n\n";
+    BasicInfo info;
     do{
     cout<<"\nProgram Functions";
     cout<<"\n1) Add Product(s)\n2) View Current Inventory Listing\n3) Edit Inventory Listing\n4) Exit Program\n\n";
