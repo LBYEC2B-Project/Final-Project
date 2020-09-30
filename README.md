@@ -1,6 +1,5 @@
-# Final-Project
+UPDATES:
 
-You can edit here: [![Run on Repl.it](https://repl.it/badge/github/LBYEC2B-Project/Final-Project)](https://repl.it/github/LBYEC2B-Project/Final-Project)
-Para online collab.
+I moved your code to InventoryClassifier.cpp
 
-When you're done editing there, click "version control" on the left, then "commit & push".
+I made an alternative code for placing in arrays but not sure if its good
