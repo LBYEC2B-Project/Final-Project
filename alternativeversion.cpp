@@ -23,7 +23,7 @@ class Product{
 	string classification[100];
 	string id[100];
 	int price[100], qty[100];
-	int cnt;
+	int cnt = 0;
 
 	public:
 	int count = 0;
@@ -39,24 +39,23 @@ class Product{
 	};
 
 class NewProducts: protected Product{
-	private:
-	int i;
 	public:
-	void Productsadded(string a , string b, string c, int d, int e){
+	void Productsadded(string a , string b, string c, int d, int e){ 
+		int i = 1;
 		i = i + cnt;
 		id[i] = a;
 		classification[i] = b;
 		name[i] = c;
 		price[i] = d;
 		qty[i] = e;
-		cnt = i + 1;
+		cnt = cnt + 1;
 	}
 };
 
-class Display: public NewProducts{
+class Display: public NewProducts{ //Problem: outputs garbage values
 	public:
 	void Displayinfo(){
-		for(int i=0; i<cnt; i++){
+		for(int i=1; i<=cnt; i++){
 		cout << id[i] << " " << classification[i] << " " << name[i] << " " << price[i] << " " << qty[i] << endl;
 	}
 	}
@@ -67,12 +66,13 @@ void readFile(){
 	int i=0, y, z;
 	Product list;
 	ifstream file;
+	cout <<"Checking Inventory Status...\n";
     file.open("inventory.txt");
     if (file.is_open())
 	{
-    	while ( file >> v >> w >> x >> y >> z )
+    	while ( file >> v >> w >> x >> y >> z ) //input info on every line to variables supposedly
     	{	
-			list.Productinfo(v, w, x, y, z, i);//each line has their own object
+			list.Productinfo(v, w, x, y, z, i);//copies info to product class
 			i++;
     	}
 		file.close();
@@ -81,7 +81,7 @@ void readFile(){
 	else cout << "List is currently empty\n";
 };
 
-string GenerateID(string group){
+string GenerateID(string group){ //product id, somehow make it more specific
 		if(group == "Electronics"){
 				group = "E";
 			}
@@ -95,12 +95,11 @@ string GenerateID(string group){
 };
 
 void addProduct(){
-	NewProducts add;
+	NewProducts add; //add new product class
 	string id, group, name, y;
 	int price, qty;
 	int x = 1;
 	readFile();
-	cout <<"Checking Inventory Status...\n";
 	do{
 	cout << "Enter Product Group: ";
 	cin >> group;
@@ -111,7 +110,7 @@ void addProduct(){
 	cin >> price;
 	cout << "Enter Product Quantity: ";
 	cin >> qty;
-	add.Productsadded(id , group, name, price, qty);
+	add.Productsadded(id , group, name, price, qty); //will copy inputs to addproducts class
 	cout << "Add another product: ";
 	cin >> y;
 	if((y == "yes")||(y == "Yes")){
