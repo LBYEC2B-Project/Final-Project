@@ -134,7 +134,9 @@ void editList(){
 
 int main(){
     int x, y;
-    cout<<"|||Product Inventory System v1.0|||\n\n";
+	cout<<"\n===================================\n";
+    cout<<"|||Product Inventory System v1.0|||";
+	cout<<"\n===================================\n";
     BasicInfo info;
 	Count cnt;
     do{
@@ -171,6 +173,5 @@ int main(){
     		}
     	};
     }while(x != 4);
-    
     return 0;
 };
