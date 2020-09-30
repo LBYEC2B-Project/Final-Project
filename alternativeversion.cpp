@@ -18,53 +18,65 @@ class BasicInfo{
 };
 
 class Product{
-	private:	
-	string name;
-	string classification;
-	string id;
-	int price, qty, count;
+	protected:	
+	string name[100];
+	string classification[100];
+	string id[100];
+	int price[100], qty[100];
+	int cnt;
+
 	public:
-	void Productinfo(string a , string b, string c, int d, int e){
-		id = a;
-		classification = b;
-		name = c;
-		price = d;
-		qty = e;
+	int count = 0;
+	void Productinfo(string a , string b, string c, int d, int e, int i){
+		id[i] = a;
+		classification[i] = b;
+		name[i] = c;
+		price[i] = d;
+		qty[i] = e;
+		count = count + 1;
+		cnt = count;
 	}
-	void Displayinfo(){
-		cout << id << " " << classification << " " << name << " " << price << " " << qty << endl;
+	};
+
+class NewProducts: protected Product{
+	private:
+	int i;
+	public:
+	void Productsadded(string a , string b, string c, int d, int e){
+		i = i + cnt;
+		id[i] = a;
+		classification[i] = b;
+		name[i] = c;
+		price[i] = d;
+		qty[i] = e;
+		cnt = i + 1;
 	}
 };
 
-class Count{
-	private:
-	int count;
+class Display: public NewProducts{
 	public:
-	void setCount(int x){
-		count = x;
+	void Displayinfo(){
+		for(int i=0; i<cnt; i++){
+		cout << id[i] << " " << classification[i] << " " << name[i] << " " << price[i] << " " << qty[i] << endl;
 	}
-	int getCount(){
-		return count;
 	}
 };
 
 void readFile(){
 	string v, w, x;
-	int i=1, y, z;
-	Product list[100];
-	Count cnt;
+	int i=0, y, z;
+	Product list;
 	ifstream file;
     file.open("inventory.txt");
     if (file.is_open())
 	{
     	while ( file >> v >> w >> x >> y >> z )
     	{	
-			list[i].Productinfo(v, w, x, y, z);//each line has their own object
+			list.Productinfo(v, w, x, y, z, i);//each line has their own object
 			i++;
     	}
 		file.close();
 		cout << "Successfully scanned inventory list\n";
-		cnt.setCount(i);
 	}
 	else cout << "List is currently empty\n";
 };
@@ -83,16 +95,14 @@ string GenerateID(string group){
 };
 
 void addProduct(){
+	NewProducts add;
 	string id, group, name, y;
-	Product list[100];
-	Count cnt;
 	int price, qty;
-	int x=1;
-	cout <<"Checking Inventory Status...\n";
+	int x = 1;
 	readFile();
-	int c = cnt.getCount();
+	cout <<"Checking Inventory Status...\n";
 	do{
-	cout << "Enter Product Group: "; //Electronics, Food, etc
+	cout << "Enter Product Group: ";
 	cin >> group;
 	id = GenerateID(group);
 	cout << "Enter Product Name: ";
@@ -101,31 +111,24 @@ void addProduct(){
 	cin >> price;
 	cout << "Enter Product Quantity: ";
 	cin >> qty;
-	list[c].Productinfo(id, group, name, price, qty);
+	add.Productsadded(id , group, name, price, qty);
 	cout << "Add another product: ";
 	cin >> y;
-	if(y == "yes"){
-		c++;
-		cnt.setCount(c);
+	if((y == "yes")||(y == "Yes")){
 	}
-	else if(y == "no"){
+	else if((y == "no")||(y == "No")){
 		x--;
 	}
 	}while(x!=0);
 };
 
 void rmProduct(){
-	
 	//return list;
 };
 
 void viewList(){
-	Product list[100];
-	Count cnt;
-
-	for(int i=0; i<=cnt.getCount(); i++){
-		list[i].Displayinfo();
-	}
+	Display show;
+	show.Displayinfo();
 };
 
 void editList(){
@@ -138,7 +141,6 @@ int main(){
     cout<<"|||Product Inventory System v1.0|||";
 	cout<<"\n===================================\n";
     BasicInfo info;
-	Count cnt;
     do{
     cout<<"\nProgram Functions";
     cout<<"\n1) Add Product(s)\n2) View Current Inventory Listing\n3) Edit Inventory Listing\n4) Exit Program\n\n";
@@ -164,7 +166,6 @@ int main(){
         	case 4:
         	{
             	cout<<"\nThank you!\n";
-				cnt.setCount(0);
      			break;
         	}
         	default:
