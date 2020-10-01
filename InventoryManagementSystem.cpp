@@ -65,10 +65,9 @@ void printList(Product *list, int *size){
 
 void renderMenu(Product * list, int *size){
 	int counter = 0;
-	cout<<"|||Product Inventory System v1.0|||\n";
 	if(*size== 0)
 	{
-		cout << "\nYour List is Empty!\n";
+		cout << "\nYour List is Currently Empty.\n";
 	}
 	else
 	{
@@ -237,7 +236,9 @@ int main(){
 	list = new Product[1];
 
 	//cout << "Size: " << size << endl;
-
+	cout<<"\n======================================\n";
+	cout<<"|||Inventory Management System v1.0|||";
+	cout<<"\n======================================\n";
 	//gets size of list, and the contents of the file (string)
 	loadFileData(list, &size, &content);
 	
@@ -272,7 +273,7 @@ int main(){
 	        }
 	        case 3: //edit entry
 	        {
-	        	cout<<"\nEnter the Product ID\n";
+	        	cout<<"\nEnter the Product ID: ";
 	        	cin>>idInput;
 	        	do{
 	        		for (int n=0; n<size; n++){
@@ -282,8 +283,8 @@ int main(){
 							n = size;
 						};
 					};
-	        		
 		        	cout<<"\n\nHow will you edit this product? \n1) Edit\n2) Remove\n3) Go Back\n";
+					cout<<"Edit Option: ";
 		        	cin>>x;
 		        	switch(x){
 		        		case 1:
@@ -291,25 +292,25 @@ int main(){
 		        				cin>>y;
 								switch(y){
 		        					case 1:
-		        						cout << "Please enter the new Name:\n";
+		        						cout << "Please enter the new Name: ";
 		        						cin>>strInput;
 		        						list[tempIndex].name = strInput;
 		        						saveList(list, &size);
 		        						break;
 		        					case 2:
-		        						cout << "Please enter the new Group:\n";
+		        						cout << "Please enter the new Group: ";
 		        						cin>>strInput;
 		        						list[tempIndex].group = strInput;
 		        						saveList(list, &size);		        						
 										break;
 		        					case 3:
-		        						cout << "Please enter the new Price:\n";
+		        						cout << "Please enter the new Price: ";
 		        						cin>>z;
 		        						list[tempIndex].price = z;
 		        						saveList(list, &size);
 		        						break;
 		        					case 4:
-		        						cout << "Please enter the new Quantity:\n";
+		        						cout << "Please enter the new Quantity: ";
 		        						cin>>z;
 		        						list[tempIndex].qty = z;
 		        						saveList(list, &size);
@@ -331,10 +332,11 @@ int main(){
 	        }
 	        case 4:
 	        	cout << "How would you like to search?\n1) By Name\n2) By Id\n3) Go Back\n";
+				cout << "Search option: ";
 	        	cin >> y;
 	        	switch(y){
 	        		case 1:
-	        			cout << "\nPlease enter the name of your Product:\n";
+	        			cout << "\nPlease enter the name of your Product: ";
 	        			cin >> strInput;
 	        			for (int n = 0; n < size; n++){
 	        				if(list[n].name == strInput){
@@ -347,7 +349,7 @@ int main(){
 						}
 	        			break;
 	        		case 2:
-	        			cout << "\nPlease enter the Id of your Product\n";
+	        			cout << "\nPlease enter Product ID: ";
 	        			cin >> idInput;
 	        			for (int n = 0; n < size; n++){
 	        				if(list[n].id == idInput){
@@ -368,21 +370,20 @@ int main(){
 	        	break;
 	        case 5:
 	        {
-	            cout<<"\nThank you!\n";
+				cout <<"Exiting Program\n";
 	      		break;
 	        }
 	        default:
 	        {
-	        	cout<<"ERROR: Please choose from options 1, 2, or 3. Try again\n\n";
+	        	cout<<"ERROR: Please choose from options 1, 2, 3, 4, or 5. Try again!\n\n";
 	    	}
 	    };
     }while(x != 5);
 	
 	//clear memory before exit
-	cout << "Clearing Memory\n\n"; 
+	cout << "\nClearing Memory....\n"; 
 	delete[] list;
 	list = NULL;
-	
-	cout << "Exiting Program\n";
+	cout<<"\nThank you!\n";
 	return 0;
 }
