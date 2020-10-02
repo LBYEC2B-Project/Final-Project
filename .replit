@@ -1,2 +1,2 @@
 language = "bash"
-run = "clang++ -std=c++11 -lm -ggdb InventoryClassifier.cpp -o main; ./main"
+run = "clang++ -std=c++11 -lm -ggdb InventoryManagementSystem.cpp -o main; ./main"

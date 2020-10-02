@@ -1,0 +1,4 @@
+1	Brandless_Phone	Electronics	50	40	
+2	Brandless_TV	Electronics	100	74	
+3	Brandless_Banana	Food	99	1	
+4	Brandless_Painting	Home_Decor	50	40	
